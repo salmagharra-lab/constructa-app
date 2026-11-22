@@ -2,6 +2,7 @@
   "common": {
     "appName": "CONSTRUCTA",
     "tagline": "נוכחות ומשימות באתר הבנייה",
+    "greeting": "בוקר טוב לכולם",
     "logout": "יציאה",
     "save": "שמירה",
     "cancel": "ביטול",
@@ -12,7 +13,8 @@
     "delete": "מחיקה",
     "language": "שפה",
     "optional": "לא חובה",
-    "today": "היום"
+    "today": "היום",
+    "close": "סגירה"
   },
   "setup": {
     "title": "צריך לחבר את Supabase",

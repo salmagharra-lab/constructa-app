@@ -2,6 +2,7 @@
   "common": {
     "appName": "CONSTRUCTA",
     "tagline": "การลงเวลาและงานในไซต์ก่อสร้าง",
+    "greeting": "สวัสดีตอนเช้าทุกคน",
     "logout": "ออกจากระบบ",
     "save": "บันทึก",
     "cancel": "ยกเลิก",
@@ -12,7 +13,8 @@
     "delete": "ลบ",
     "language": "ภาษา",
     "optional": "ไม่บังคับ",
-    "today": "วันนี้"
+    "today": "วันนี้",
+    "close": "ปิด"
   },
   "setup": {
     "title": "ต้องเชื่อมต่อ Supabase",
