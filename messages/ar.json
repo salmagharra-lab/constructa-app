@@ -12,7 +12,8 @@
     "delete": "حذف",
     "language": "اللغة",
     "optional": "اختياري",
-    "today": "اليوم"
+    "today": "اليوم",
+    "close": "إغلاق"
   },
   "setup": {
     "title": "يجب ربط Supabase",

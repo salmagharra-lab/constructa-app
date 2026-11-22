@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import TomatoSplash from "@/components/TomatoSplash";
 import { dirFor } from "@/lib/i18n";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <body className="min-h-dvh antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
+          <TomatoSplash />
         </NextIntlClientProvider>
       </body>
     </html>
