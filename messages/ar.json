@@ -2,6 +2,7 @@
   "common": {
     "appName": "CONSTRUCTA",
     "tagline": "الحضور والمهام في موقع البناء",
+    "greeting": "صباح الخير للجميع",
     "logout": "خروج",
     "save": "حفظ",
     "cancel": "إلغاء",
