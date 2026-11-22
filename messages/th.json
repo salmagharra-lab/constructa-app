@@ -20,6 +20,12 @@
     "title": "ต้องเชื่อมต่อ Supabase",
     "body": "สร้างไฟล์ .env.local ที่มี NEXT_PUBLIC_SUPABASE_URL และ NEXT_PUBLIC_SUPABASE_ANON_KEY รันไฟล์ SQL ในโฟลเดอร์ supabase/migrations แล้วรีสตาร์ทเซิร์ฟเวอร์ ดูคำแนะนำทั้งหมดใน README"
   },
+  "contact": {
+    "title": "ติดต่อเรา",
+    "body": "มีคำถามหรือต้องการความช่วยเหลือ? เรายินดีช่วยเหลือ",
+    "email": "อีเมล",
+    "phone": "โทรศัพท์"
+  },
   "auth": {
     "login": "เข้าสู่ระบบ",
     "signup": "สมัครใช้งาน",

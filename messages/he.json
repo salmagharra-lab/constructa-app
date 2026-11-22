@@ -20,6 +20,12 @@
     "title": "צריך לחבר את Supabase",
     "body": "צרו קובץ .env.local עם NEXT_PUBLIC_SUPABASE_URL ו-NEXT_PUBLIC_SUPABASE_ANON_KEY, הריצו את קובץ ה-SQL שבתיקייה supabase/migrations, והפעילו מחדש את השרת. ההוראות המלאות נמצאות ב-README."
   },
+  "contact": {
+    "title": "צור קשר",
+    "body": "יש שאלה או צריך עזרה? נשמח לעזור.",
+    "email": "אימייל",
+    "phone": "טלפון"
+  },
   "auth": {
     "login": "כניסה",
     "signup": "הרשמה",
