@@ -8,7 +8,8 @@ export default async function LoginPage() {
     <>
       <Header home="/" />
       <main className="mx-auto max-w-md p-4">
-        <p className="my-6 text-center text-stone-500">{t("tagline")}</p>
+        <h1 className="mt-6 text-center text-2xl font-bold">{t("greeting")}</h1>
+        <p className="mb-6 mt-2 text-center text-stone-500">{t("tagline")}</p>
         <AuthForm mode="login" />
       </main>
     </>
