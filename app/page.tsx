@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import ContactSection from "@/components/ContactSection";
 import Header from "@/components/Header";
 import { isSupabaseConfigured } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
@@ -17,6 +18,7 @@ export default async function Home() {
             <h1 className="h2">{t("title")}</h1>
             <p className="leading-7 text-stone-700">{t("body")}</p>
           </div>
+          <ContactSection />
         </main>
       </>
     );

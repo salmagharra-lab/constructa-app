@@ -20,6 +20,12 @@
     "title": "يجب ربط Supabase",
     "body": "أنشئ ملف .env.local يحتوي على NEXT_PUBLIC_SUPABASE_URL و NEXT_PUBLIC_SUPABASE_ANON_KEY، وشغّل ملف SQL الموجود في المجلد supabase/migrations، ثم أعد تشغيل الخادم. التعليمات الكاملة في ملف README."
   },
+  "contact": {
+    "title": "اتصل بنا",
+    "body": "لديك سؤال أو تحتاج إلى مساعدة؟ يسعدنا مساعدتك.",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف"
+  },
   "auth": {
     "login": "دخول",
     "signup": "تسجيل",
