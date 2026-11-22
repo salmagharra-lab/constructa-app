@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CONSTRUCTA
 
-## Getting Started
+מערכת לניהול נוכחות ומשימות באתרי בנייה — גרסת MVP.
 
-First, run the development server:
+- **עובד (מובייל):** כניסה ויציאה לפי רדיוס מהאתר (GPS), רשימת המשימות של היום, סרטון הדרכה והנחיות, וסגירת משימה ב-V עם צילום חובה. המשימה נסגרת מיד, בלי אישור של המנהל.
+- **קבלן / מנהל (Web):** הקמת פרויקט עם רדיוס, מבנה של בניינים, קומות, דירות וחדרים, צוותים, שיוך עובדים ויצירת משימות. בלוח הבקרה רואים בזמן אמת מי באתר, כמה שעות עבד כל אחד, התקדמות לפי אזור וגלריית תמונות. אפשר גם לתקן שעות נוכחות בדיעבד.
+- **שפות:** עברית, ערבית (RTL) ותאילנדית.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## טכנולוגיות
+
+Next.js 15 (App Router), Tailwind CSS 4, next-intl, Supabase (Postgres, Auth, Storage, Realtime). האפליקציה היא PWA, כך שאפשר להתקין אותה על מסך הבית בטלפון.
+
+## הרצה מקומית
+
+1. צרו פרויקט חינמי ב-[supabase.com](https://supabase.com).
+2. ב-Supabase פתחו את **SQL Editor** והריצו את כל התוכן של הקובץ `supabase/migrations/0001_init.sql`.
+3. ב-**Authentication → Sign In / Providers → Email**, לצורך פיתוח, אפשר לכבות את האפשרות **Confirm email** כדי שלא יהיה צורך לאשר כל משתמש באימייל.
+4. העתיקו את `.env.example` לקובץ חדש בשם `.env.local`, ומלאו בו את ה-URL ואת מפתח ה-anon מתוך **Project Settings → API**.
+5. התקינו והריצו:
+
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+6. פתחו את http://localhost:3000.
+
+## ניסיון ראשון
+
+1. הירשמו כ**קבלן / מנהל עבודה**, צרו פרויקט ולחצו על "המיקום הנוכחי שלי".
+2. בלשונית **הגדרות** הוסיפו בניין, קומות ודירות, וגם צוות.
+3. בחלון גלישה בסתר, הירשמו כ**עובד** עם אימייל אחר.
+4. חזרו למנהל, הוסיפו את העובד לפי האימייל שלו, ובלשונית **משימות** צרו לו משימה להיום.
+5. אצל העובד לחצו **כניסה לעבודה**, פתחו את המשימה, לחצו **סיימתי ✓**, צלמו ואשרו.
+6. בלוח הבקרה של המנהל העובד יופיע באתר, ההתקדמות תתעדכן והתמונה תופיע בגלריה.
+
+> הגישה למיקום ולמצלמה בטלפון עובדת רק ב-HTTPS או ב-localhost. כדי לבדוק על טלפון אמיתי, פרסו את האפליקציה (למשל ב-Vercel) או השתמשו במנהרת HTTPS.
+
+## מבנה הקוד
+
+```
+app/
+  login, signup          הרשמה וכניסה
+  worker/                מסך העובד (כניסה/יציאה, משימות היום)
+  worker/tasks/[id]      משימה: סרטון, הנחיות, V + צילום
+  manager/               רשימת פרויקטים ויצירת פרויקט
+  manager/projects/[id]  לוח בקרה בזמן אמת
+    setup/               פרטי הפרויקט, אזורים, צוותים, עובדים
+    tasks/               יצירה וניהול של משימות
+    attendance/          נוכחות ותיקון שעות
+  manager/actions.ts     Server Actions של המנהל
+components/              רכיבי UI
+lib/                     Supabase, זמנים ואזור זמן, אזורים, וידאו
+messages/                תרגומים (he, ar, th)
+supabase/migrations/     סכמה, RLS, פונקציות RPC, Storage
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## אבטחה
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- כל הטבלאות מוגנות ב-Row Level Security. עובד רואה רק את המשימות שלו, של הצוות שלו, או משימות של כל הפרויקט, ורק את הנוכחות שלו.
+- המרחק מהאתר בכניסה לעבודה מחושב בשרת (`check_in`). עם זאת, מיקום GPS שמגיע מהטלפון אפשר לזייף, ולכן זו בקרה ולא הוכחה.
+- אי אפשר לסגור משימה בלי תמונה: יש על זה אילוץ במסד הנתונים, והפונקציה `complete_task` בודקת את זה.
+- רק המנהל יכול לערוך נוכחות, וכל עריכה נשמרת עם שם העורך, הזמן והערה.
+- את מפתח ה-anon מותר לחשוף בצד הלקוח, כי RLS מגן על הנתונים. אסור להכניס לקוד את מפתח ה-`service_role`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## מחוץ לתחום ב-MVP
 
-## Learn More
+צ'אט ותרגום אוטומטי, התראות, מערכת ניהול סרטונים (משתמשים בקישורים בלבד), ומצב Offline מלא. במקום מצב Offline, כששליחה נכשלת מוצגת שגיאה עם כפתור "נסה שוב", והתמונה כבר לא תעלה פעמיים.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> סימון השלמה עם תמונה אינו אישור מקצועי לאיכות העבודה, ואינו מחליף פיקוח בטיחות. סרטון הדרכה אינו מחליף הכשרה או הסמכה נדרשת.
